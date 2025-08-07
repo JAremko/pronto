@@ -1,4 +1,4 @@
-(def protobuf-version "3.15.0")
+(def protobuf-version "4.29.2")
 
 
 (defproject com.appsflyer/pronto "3.0.0-SNAPSHOT"
@@ -20,7 +20,8 @@
             [lein-codox "0.10.7"]]
 
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [potemkin "0.4.5"]]
+                 [potemkin "0.4.5"]
+                 [build.buf/protovalidate "0.3.2"]]
   :profiles {:provided {:dependencies [[com.google.protobuf/protobuf-java ~protobuf-version]]}
              :dev      {:dependencies      [[clj-kondo "RELEASE"] ;; TODO: pin this, or use it as a binary
                                             [jmh-clojure "0.4.0"]

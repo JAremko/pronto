@@ -1,11 +1,11 @@
 package pronto;
 
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 
 public class RT {
 
-    public static GeneratedMessageV3 getProto(ProtoMap map) {
+    public static GeneratedMessage getProto(ProtoMap map) {
         return map.pmap_getProto();
     }
 

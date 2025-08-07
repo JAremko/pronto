@@ -7,7 +7,7 @@
     Descriptors$FieldDescriptor
     Descriptors$GenericDescriptor
     Descriptors$FieldDescriptor$Type
-    GeneratedMessageV3]))
+    GeneratedMessage]))
 
 
 (defn javaify [s] (s/replace s "-" "_"))
@@ -86,7 +86,19 @@
        (not (.isRepeated fd))))
 
 (defn optional? [^Descriptors$FieldDescriptor fd]
-  (.hasOptionalKeyword fd))
+  ;; hasOptionalKeyword was added in protobuf 3.15 but may not exist in all versions
+  ;; In protobuf v4, use hasPresence for similar functionality
+  (try
+    (if (try (.getMethod (class fd) "hasPresence" (make-array Class 0))
+             (catch NoSuchMethodException _ nil))
+      (.hasPresence fd)
+      ;; Try older method name
+      (if (try (.getMethod (class fd) "hasOptionalKeyword" (make-array Class 0))
+               (catch NoSuchMethodException _ nil))
+        (.hasOptionalKeyword fd)
+        false))
+    (catch Exception _
+      false)))
 
 (defn enum? [^Descriptors$FieldDescriptor fd]
   (= (.getType fd)
@@ -130,7 +142,7 @@
                  ;; No point to import POJO classes, and this can also
                  ;; lead to conflicts if 2 namespaces import 2 classes
                  ;; with the same name but different packages.
-                 :when (not= (.getSuperclass clazz) GeneratedMessageV3)
+                 :when (not= (.getSuperclass clazz) GeneratedMessage)
                  ;; don't import generated classes created by the lib, as this might
                  ;; lead to collision between different mappers when importing
                  ;; these classes into the global ns

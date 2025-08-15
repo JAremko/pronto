@@ -645,7 +645,7 @@
 
 (deftest remove-default-values-xf-tests
   (testing "that default values are removed when converting to a clj-map using the xf"
-    (is (= {:level :LOW}
+    (is (= {}
            (-> (p/proto-map mapper People$Person)
                (p/proto-map->clj-map p/remove-default-values-xf)))))
   (testing "that default values are kept when converting to a clj-map"
@@ -669,10 +669,10 @@
             :bla                  {}
             :ids_list             []
             :relations_like_level {}
-            :num                  0
-            :str                  ""
+            :num                  nil
+            :str                  nil
             :person               nil
-            :level                :LOW
+            :level                nil
             :s2s                  {}
             :repeated_bytes       []
             :repeated_bools       []

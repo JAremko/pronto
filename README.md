@@ -4,7 +4,9 @@
 [![Clojars Project](https://img.shields.io/clojars/v/com.appsflyer/pronto.svg)](https://clojars.org/com.appsflyer/pronto)
 [![cljdoc badge](https://cljdoc.org/badge/com.appsflyer/pronto)](https://cljdoc.org/d/com.appsflyer/pronto/CURRENT)
 
-A library for using [Protocol Buffers](https://github.com/protocolbuffers/protobuf) 3 in Clojure.
+A library for using [Protocol Buffers](https://github.com/protocolbuffers/protobuf) in Clojure.
+
+> **Note:** This library now supports Protocol Buffers v4. See [MIGRATION_PROTOBUF_V4.md](MIGRATION_PROTOBUF_V4.md) for details on migrating from v3.
 
 ## Rationale
 
@@ -24,7 +26,7 @@ Add a dependency to your `project.clj` file:
 
            [com.appsflyer/pronto "3.0.0"]
 
-Note that the library comes with no Java protobuf dependencies of its own and they are expected to be provided by consumers of the library, with a minimal version of `3.15.0`.
+Note that the library comes with no Java protobuf dependencies of its own and they are expected to be provided by consumers of the library, with a minimal version of `4.0.0` (or `3.15.0` for older versions).
 
 ## How does it work?
 

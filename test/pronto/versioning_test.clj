@@ -44,7 +44,7 @@
                :a2 55
                :a3 :e1-val2
                :num 777)
-             {:a1 "a11" :a2 55 :a3 :e1-val2 :num 777 :str "" :person nil})))
+             {:a1 "a11" :a2 55 :a3 :e1-val2 :num 777 :str nil :person nil})))
 
     (testing "set fields with illegal value"
       (is (thrown? ExceptionInfo
